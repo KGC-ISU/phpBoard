@@ -34,5 +34,5 @@ function query($con, $sql, $data) {
 
 function sendJsonResponse($msg, $success, $data = []) {
     header('Content-type:application/json');
-    echo json_encode(['success'=>$success, 'msg'=>$msg, 'data'=>$data], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['success'=>$success, 'msg'=>$msg, 'list'=>$data], JSON_UNESCAPED_UNICODE);
 }

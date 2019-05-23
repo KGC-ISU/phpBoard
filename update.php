@@ -1,5 +1,11 @@
 <?php
-session_start();
+require("db.php");
+
+$num = $_GET['num'];
+
+$sql = "SELECT * FROM board WHERE num = ?";
+
+$board = fetch($con, $sql, [$num]);
 ?>
 
 <!DOCTYPE html>
@@ -8,15 +14,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>메인</title>
-
-    <!-- css -->
-    <link rel="stylesheet" href="./css/style.css">
-
-    <!-- js -->
-    <script src="./js/App.js"></script>
-
-    <!-- 폰트 -->
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/insert.css">
     <link href="https://fonts.googleapis.com/css?family=Cute+Font|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -45,14 +44,17 @@ session_start();
             <?php endif ?>
             
         </div>
-        <div class="visual">
-            <div class="visual-box">
-                <p>함께 공유하고 나누는 즐거움</p>
-            </div>
-            <div class="board-link">
-                <p><a href="/board.php">게시판 가기</a></p>
-            </div>
-        </div>
     </header>
+
+    <div class="insert-board">
+        <div class="info">
+            글 수정하기
+        </div>
+        <form action="/updateBoard.php?num=<?= $num ?>" method="POST">
+            <input type="text" name="title" value="<?= $board->title ?>" placeholder="글 제목을 입력하세요">
+            <textarea name="txt" id="user-txt" placeholder="글 내용을 입력하세요"><?= $board->content ?></textarea>
+            <input type="submit" value="글 수정 완료">
+        </form>
+    </div>
 </body>
 </html>

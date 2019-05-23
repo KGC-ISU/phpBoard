@@ -20,7 +20,7 @@ session_start();
             <ul class="nav">
                 <li><a href="/index.php">KGC</a></li>
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/getBoardList.php">커뮤니티</a></li>
+                <li><a href="/board.php">커뮤니티</a></li>
             </ul>
 
             <?php if( isset($_SESSION['user']) ) : ?>
@@ -71,74 +71,7 @@ session_start();
                 </div>
             </div>
             <div class="board-list">
-                <!-- <div class="boards">
-                    <div class="num">
-                        1
-                    </div>
-                    <div class="title">
-                        <a href="/getboard.php">낑깡국 역사 1</a>
-                    </div>
-                    <div class="writer">
-                        낑깡왕
-                    </div>
-                    <div class="date">
-                        2019-05-20
-                    </div>
-                    <div class="cnt">
-                        0
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="num">
-                        2
-                    </div>
-                    <div class="title">
-                        <a href="/getboard.php">낑깡국 역사 2</a>
-                    </div>
-                    <div class="writer">
-                        낑깡왕
-                    </div>
-                    <div class="date">
-                        2019-05-20
-                    </div>
-                    <div class="cnt">
-                        0
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="num">
-                        3
-                    </div>
-                    <div class="title">
-                        <a href="/getboard.php">낑깡국 역사 3</a>
-                    </div>
-                    <div class="writer">
-                        낑깡왕
-                    </div>
-                    <div class="date">
-                        2019-05-20
-                    </div>
-                    <div class="cnt">
-                        0
-                    </div>
-                </div>
-                <div class="boards">
-                    <div class="num">
-                        4
-                    </div>
-                    <div class="title">
-                        <a href="/getboard.php">낑깡국 역사 4</a>
-                    </div>
-                    <div class="writer">
-                        낑깡왕
-                    </div>
-                    <div class="date">
-                        2019-05-20
-                    </div>
-                    <div class="cnt">
-                        0
-                    </div>
-                </div> -->
+                
             </div>
             
         </div>

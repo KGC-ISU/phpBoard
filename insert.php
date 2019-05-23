@@ -1,5 +1,11 @@
 <?php
-session_start();
+require("db.php");
+
+if(isset($_SESSION['user'])) {
+
+} else {
+    msgAndGo("로그인 후 이용할 수 있습니다.", "/login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +24,7 @@ session_start();
             <ul class="nav">
                 <li><a href="/index.php">KGC</a></li>
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/getBoardList.php">커뮤니티</a></li>
+                <li><a href="/board.php">커뮤니티</a></li>
             </ul>
 
             <?php if( isset($_SESSION['user']) ) : ?>

@@ -1,5 +1,19 @@
 <?php
-session_start();
+    require("db.php");
+
+    $sql = "SELECT * FROM board WHERE num = ?";
+
+    $num = $_GET['num'];
+
+    $board = fetch($con, $sql, [$num]);
+
+    if($board) {
+        $sql = "UPDATE board SET cnt = cnt+1 WHERE num = ?";
+
+        query($con, $sql, [$num]);
+    } else {
+        msgAndGo($sql, "/board.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +32,7 @@ session_start();
             <ul class="nav">
                 <li><a href="/index.php">KGC</a></li>
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/getBoardList.php">커뮤니티</a></li>
+                <li><a href="/board.php">커뮤니티</a></li>
             </ul>
 
             <?php if( isset($_SESSION['user']) ) : ?>
@@ -43,7 +57,7 @@ session_start();
     <div class="board">
         <div class="inner-box">
             <div class="board-title">
-            낑깡국 역사 1
+                <?= $board->title . ' (' . $board->id . ')' ?>
             </div>
 
             <div class="board-infos">
@@ -54,27 +68,48 @@ session_start();
                 </div>
                 <div class="inner-info row">
                     <div class="writer">
-                        낑깡왕
+                        <?= $board->writer ?>
                     </div>
                     <div class="date">
-                        2019-05-20
+                        <?= $board->date ?>
                     </div>
                     <div class="cnt">
-                        0
+                        <?= $board->cnt ?>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="text">
-            낑깡왕 1세 드디어 국왕이 되어 나라를 세우다.
+            <?= $board->content ?>
         </div>
     </div>
 
-    <div class="select">
-        <a href="/update.php">수정하기</a>
-        <a href="/delete.php">글 삭제</a>
-        <a href="/getBoardList.php">글 목록</a>
-    </div>
+    <?php if( isset($_SESSION['user']) ) : ?>
+
+        <?php if( $_SESSION['user']->id == $board->id ) : ?>
+
+            <div class="select">
+                <a href="/update.php?num=<?= $num ?>">수정하기</a>
+                <a href="/deleteBoard.php?num=<?= $num ?>">글 삭제</a>
+                <a href="/board.php">글 목록</a>
+            </div>
+
+        <?php else : ?>
+
+            <div class="select">
+                <a href="/board.php">글 목록</a>
+            </div>
+
+        <?php endif ?>
+
+    <?php else : ?>
+
+        <div class="select">
+            <a href="/board.php">글 목록</a>
+        </div>
+
+    <?php endif ?>
+    
 </body>
 </html>

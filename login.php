@@ -17,7 +17,7 @@
             <ul class="nav">
                 <li><a href="/index.php">KGC</a></li>
                 <li><a href="/index.php">Home</a></li>
-                <li><a href="/getBoardList.php">커뮤니티</a></li>
+                <li><a href="/board.php">커뮤니티</a></li>
             </ul>
 
             <ul class="login">

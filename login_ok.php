@@ -10,7 +10,7 @@ $user = fetch($con, $sql, [$id, $pass]);
 
 if($user) {
     $_SESSION['user'] = $user;
-    msgAndGo("로그인 성공", "/getBoardList.php");
+    msgAndGo("로그인 성공", "/board.php");
 } else {
-    msgAndGo("로그인 실패", "/login.php");
+    msgAndGo("아이디나 비밀번호가 잘못되었습니다.", "/login.php");
 }

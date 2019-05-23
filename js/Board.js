@@ -5,13 +5,12 @@ $(function() {
         url:'/getBoardList.php',
         method:'get',
         success:function(data) {
-            alert(data.msg);
             if(data.success) {
 
                 $(".board-list").empty();
 
-                let list = data.data;
-                
+                let list = data.list;
+
                 list.forEach(x => {
                     $(".board-list").append(setBoard(x));
                 });
@@ -30,10 +29,10 @@ function setBoard(board) {
                     ${board.num}
                 </div>
                 <div class="title">
-                    <a href="/getboard.php">${board.title}</a>
+                    <a href="/content.php?num=${board.num}">${board.title}</a>
                 </div>
                 <div class="writer">
-                    ${board.writer}
+                    ${board.writer} (${board.id})
                 </div>
                 <div class="date">
                     ${board.date}
